@@ -1,3 +1,6 @@
+"""
+This file defines a python machine learning application.
+"""
 import os
 import json
 import pickle
@@ -5,15 +8,18 @@ import numpy as np
 import tornado.web
 import tornado.ioloop
 
+
 if not os.path.exists('mymodel.pkl'):
     exit('No model exists!')
 
 filename = 'mymodel.pkl'
 model = pickle.load(open(filename, 'rb'))
 
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write('Hello, Tornado!')
+
 
 class PredictionHandler(tornado.web.RequestHandler):
     def post(self):
@@ -23,11 +29,12 @@ class PredictionHandler(tornado.web.RequestHandler):
         self.write(json.dumps({'prediction': y}))
         self.finish()
 
+
 if __name__ == '__main__':
     application = tornado.web.Application([
         (r'/', MainHandler),
         (r'/predict', PredictionHandler)
     ])
-    application.listen(8888)
+    
+    application.listen(8080)
     tornado.ioloop.IOLoop.current().start()
-

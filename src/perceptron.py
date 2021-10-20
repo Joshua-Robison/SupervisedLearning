@@ -27,9 +27,6 @@ class Perceptron(object):
             self.b += self.lr * y[i]
             c = len(errors) / N
             costs.append(c)
-            
-        plt.plot(costs)
-        plt.show()
         
     def predict(self, X: np.ndarray):
         return np.sign(X.dot(self.w) + self.b)

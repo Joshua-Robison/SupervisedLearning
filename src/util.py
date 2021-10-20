@@ -5,6 +5,15 @@ import numpy as np
 import pandas as pd
 
 
+def gen_data(n_samples: int=300):
+    w = np.array([-0.5, 0.5])
+    b = 0.1
+    X = np.random.random((n_samples, 2)) * 2 - 1
+    Y = np.sign(X.dot(w) + b)
+    
+    return X, Y
+
+
 def get_data(limit=None):
     print('Reading in and transforming data...')
     df = pd.read_csv('../data/train.csv')
