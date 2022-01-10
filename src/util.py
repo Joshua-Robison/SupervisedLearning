@@ -1,29 +1,27 @@
-"""
-This file contains data loading utilities.
-"""
+"""This file contains data loading utilities."""
 import numpy as np
 import pandas as pd
 
 
-def gen_data(n_samples: int=300):
+def gen_data(n_samples: int = 300):
     w = np.array([-0.5, 0.5])
     b = 0.1
     X = np.random.random((n_samples, 2)) * 2 - 1
     Y = np.sign(X.dot(w) + b)
-    
+
     return X, Y
 
 
 def get_data(limit=None):
-    print('Reading in and transforming data...')
-    df = pd.read_csv('../data/train.csv')
+    print("Reading in and transforming data...")
+    df = pd.read_csv("../data/train.csv")
     data = df.to_numpy()
     np.random.shuffle(data)
-    X = data[:,1:] / 255.0
-    Y = data[:,0]
+    X = data[:, 1:] / 255.0
+    Y = data[:, 0]
     if limit is not None:
         X, Y = X[:limit], Y[:limit]
-        
+
     return X, Y
 
 
@@ -38,7 +36,7 @@ def get_xor():
     return X, Y
 
 
-def get_donut(n_samples: int=200, r_inner: int=5, r_outer: int=10):
+def get_donut(n_samples: int = 200, r_inner: int = 5, r_outer: int = 10):
     N = n_samples // 2
     R1 = np.random.randn(N) + r_inner
     theta = 2 * np.pi * np.random.random(N)
@@ -47,10 +45,10 @@ def get_donut(n_samples: int=200, r_inner: int=5, r_outer: int=10):
     theta = 2 * np.pi * np.random.random(N)
     X_outer = np.concatenate([[R2 * np.cos(theta)], [R2 * np.sin(theta)]]).T
     X = np.concatenate([X_inner, X_outer])
-    Y = np.array([0]*(N) + [1]*(N))
-    
+    Y = np.array([0] * (N) + [1] * (N))
+
     return X, Y
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass
