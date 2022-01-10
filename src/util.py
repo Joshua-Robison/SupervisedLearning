@@ -1,4 +1,5 @@
 """This file contains data loading utilities."""
+import os
 import numpy as np
 import pandas as pd
 
@@ -14,7 +15,8 @@ def gen_data(n_samples: int = 300):
 
 def get_data(limit=None):
     print("Reading in and transforming data...")
-    df = pd.read_csv("../data/train.csv")
+    path = os.path.dirname(__file__) + "/data/train.csv"
+    df = pd.read_csv(path)
     data = df.to_numpy()
     np.random.shuffle(data)
     X = data[:, 1:] / 255.0
