@@ -7,10 +7,8 @@ def entropy(y: np.ndarray):
     s1 = (y == 1).sum()
     if 0 == s1 or N == s1:
         return 0
-
     p1 = s1 / N
     p0 = 1 - p1
-
     return -p0 * np.log2(p0) - p1 * np.log2(p1)
 
 
@@ -38,7 +36,6 @@ class TreeNode(object):
                     max_ig = ig
                     best_col = col
                     best_split = split
-
             if max_ig == 0:
                 self.col = None
                 self.split = None
@@ -61,7 +58,6 @@ class TreeNode(object):
                     y_left = y[left_idx]
                     self.left = TreeNode(self.depth + 1, self.max_depth)
                     self.left.fit(X_left, y_left)
-
                     right_idx = X[:, best_col] >= best_split
                     X_right = X[right_idx]
                     y_right = y[right_idx]
@@ -82,7 +78,6 @@ class TreeNode(object):
             if ig > max_ig:
                 max_ig = ig
                 best_split = split
-
         return max_ig, best_split
 
     def information_gain(self, x: np.ndarray, y: np.ndarray, split: float):
@@ -91,10 +86,8 @@ class TreeNode(object):
         y1 = y[x >= split]
         if len(y0) == 0 or len(y0) == N:
             return 0
-
         p0 = len(y0) / N
         p1 = 1 - p0
-
         return entropy(y) - p0 * entropy(y0) - p1 * entropy(y1)
 
     def predict_one(self, x: np.ndarray):
@@ -112,7 +105,6 @@ class TreeNode(object):
                     p = self.prediction[1]
         else:
             p = self.prediction
-
         return p
 
     def predict(self, X: np.ndarray):
@@ -120,7 +112,6 @@ class TreeNode(object):
         P = np.zeros(N)
         for i in range(N):
             P[i] = self.predict_one(X[i])
-
         return P
 
 
@@ -137,7 +128,6 @@ class DecisionTree(object):
 
     def score(self, X: np.ndarray, y: np.ndarray):
         p = self.predict(X)
-
         return np.mean(p == y)
 
 

@@ -34,14 +34,11 @@ class KNN(object):
                 if count > max_votes:
                     max_votes = count
                     max_votes_class = v
-
             y[i] = max_votes_class
-
         return y
 
     def score(self, X: np.ndarray, y: np.ndarray) -> float:
         p = self.predict(X)
-
         return np.mean(p == y)
 
 

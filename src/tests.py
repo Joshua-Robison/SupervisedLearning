@@ -13,13 +13,11 @@ def test_perceptron():
     N_train = 300
     X_train, y_train = X[:N_train], y[:N_train]
     X_test, y_test = X[N_train:], y[N_train:]
-
     model = Perceptron()
     model.fit(X_train, y_train)
     print("\n\nPerceptron Classifier...")
     print(f"Training accuracy: {model.score(X_train, y_train)}")
     print(f"Testing accuracy: {model.score(X_test, y_test)}")
-
     plt.scatter(X[:, 0], X[:, 1], c=y, s=100)
     plt.title("Perceptron Classifier")
     plt.show()
@@ -30,7 +28,6 @@ def test_naive_bayes():
     N_train = 500
     X_train, y_train = X[:N_train], y[:N_train]
     X_test, y_test = X[N_train:], y[N_train:]
-
     model = NaiveBayes()
     model.fit(X_train, y_train)
     print("\n\nNaive Bayes Classifier...")
@@ -43,7 +40,6 @@ def test_bayes():
     N_train = 500
     X_train, y_train = X[:N_train], y[:N_train]
     X_test, y_test = X[N_train:], y[N_train:]
-
     model = Bayes()
     model.fit(X_train, y_train)
     print("\n\nBayes Classifier...")
@@ -67,7 +63,6 @@ def test_knn():
     X, y = get_donut()
     X_train, y_train = X[::2], y[::2]
     X_test, y_test = X[1::2], y[1::2]
-
     plt.scatter(
         X_train[:, 0],
         X_train[:, 1],
@@ -78,13 +73,13 @@ def test_knn():
         label="Training Data",
         cmap="jet",
     )
+
     plt.scatter(
         X_test[:, 0], X_test[:, 1], s=100, marker="s", c=y_test, label="Testing Data"
     )
 
     knn = KNN(k=3)
     knn.fit(X_train, y_train)
-
     plt.title(f"KNN Accuracy: {knn.score(X_test, y_test)}")
     plt.legend()
     plt.show()
@@ -94,7 +89,6 @@ def test_decision_tree():
     X, y = get_xor()
     X_train, y_train = X[::2], y[::2]
     X_test, y_test = X[1::2], y[1::2]
-
     print("\n\nDecision Tree Classifier...")
     plt.scatter(
         X_train[:, 0],
@@ -106,13 +100,13 @@ def test_decision_tree():
         label="Training Data",
         cmap="jet",
     )
+
     plt.scatter(
         X_test[:, 0], X_test[:, 1], s=100, marker="s", c=y_test, label="Testing Data"
     )
 
     tree = DecisionTree()
     tree.fit(X_train, y_train)
-
     plt.title(f"Decision Tree Accuracy: {tree.score(X_test, y_test)}")
     plt.legend()
     plt.show()

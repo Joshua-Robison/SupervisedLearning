@@ -30,7 +30,6 @@ class Perceptron(object):
 
     def score(self, X: np.ndarray, y: np.ndarray) -> float:
         p = self.predict(X)
-
         return np.mean(p == y)
 
 
