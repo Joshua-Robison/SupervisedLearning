@@ -1,5 +1,4 @@
 """This file trains a Random Forest Classifier to use in a RESTful python application."""
-import os
 import sys
 import pickle
 import pathlib

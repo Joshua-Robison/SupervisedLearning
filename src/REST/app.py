@@ -30,9 +30,11 @@ if __name__ == "__main__":
     file = f"{path}/mymodel.pkl"
     if not os.path.exists(file):
         exit("No model exists!")
+
     model = pickle.load(open(file, "rb"))
     application = tornado.web.Application(
         [(r"/", MainHandler), (r"/predict", PredictionHandler, {"model": model})]
     )
+
     application.listen(8080)
     tornado.ioloop.IOLoop.current().start()

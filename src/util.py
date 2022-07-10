@@ -9,6 +9,7 @@ def gen_data(n_samples: int = 300):
     b = 0.1
     X = np.random.random((n_samples, 2)) * 2 - 1
     Y = np.sign(X.dot(w) + b)
+
     return X, Y
 
 
@@ -22,6 +23,7 @@ def get_data(limit=None):
     Y = data[:, 0]
     if limit is not None:
         X, Y = X[:limit], Y[:limit]
+
     return X, Y
 
 
@@ -32,6 +34,7 @@ def get_xor():
     X[100:150] = np.random.random((50, 2)) / 2 + np.array([[0, 0.5]])
     X[150:] = np.random.random((50, 2)) / 2 + np.array([[0.5, 0]])
     Y = np.array([0] * 100 + [1] * 100)
+
     return X, Y
 
 
@@ -45,6 +48,7 @@ def get_donut(n_samples: int = 200, r_inner: int = 5, r_outer: int = 10):
     X_outer = np.concatenate([[R2 * np.cos(theta)], [R2 * np.sin(theta)]]).T
     X = np.concatenate([X_inner, X_outer])
     Y = np.array([0] * (N) + [1] * (N))
+
     return X, Y
 
 
